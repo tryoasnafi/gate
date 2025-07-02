@@ -1,17 +1,16 @@
 # gate
 
-`gate` is a simple and secure CLI tool written in Go for managing SSH credentials and connecting to remote servers.
+`gate` is a fast and secure CLI tool to manage SSH credentials and connect to remote servers.
 
 ## Features
 
 - [x] Master password protected store (Argon2id + ChaCha20 encryption)
-- [x] Session-based password cache (like `sudo`)
 - [x] Modular structure using Cobra + Viper
 - [x] Native SSH using `golang.org/x/crypto/ssh` (no `sshpass`)
 - [x] Import/export support with encryption
 - [x] Interactive TTY with color support (`TERM=xterm-256color`)
+- [ ] Session-based password cache (like `sudo`)
 - [ ] Support identity file
-- [ ] Password prompt caches for 5 minutes (like `sudo`).
 
 ## Commands
 
