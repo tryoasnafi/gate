@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"os/signal"
+	"syscall"
 
 	"github.com/spf13/cobra"
 	"golang.org/x/crypto/ssh"
@@ -53,6 +54,18 @@ func ConnectCmd() *cobra.Command {
 				fmt.Println("Failed to get terminal state:", err)
 				os.Exit(1)
 			}
+
+			// Handle terminal resize (SIGWINCH)
+			go func() {
+				sigWinch := make(chan os.Signal, 1)
+				signal.Notify(sigWinch, syscall.SIGWINCH)
+				for range sigWinch {
+					width, height, err := term.GetSize(fd)
+					if err == nil {
+						_ = sess.WindowChange(height, width)
+					}
+				}
+			}()
 
 			if _, err := term.MakeRaw(fd); err != nil {
 				fmt.Println("Failed to set terminal raw mode:", err)
