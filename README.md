@@ -11,6 +11,8 @@
 - [x] Interactive TTY with color support (`TERM=xterm-256color`)
 - [ ] Session-based password cache (like `sudo`)
 - [ ] Support identity file
+- [ ] Secure copy to clipboard password
+- [ ] Support sshd config
 
 ## Commands
 
